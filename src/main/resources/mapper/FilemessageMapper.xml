@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.llp.lightcloud.mapper.FilemessageMapper">
+
+    <resultMap id="BaseResultMap" type="com.llp.lightcloud.entity.Filemessage">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="filename" column="filename" jdbcType="VARCHAR"/>
+            <result property="filepath" column="filepath" jdbcType="VARCHAR"/>
+            <result property="isdelete" column="isdelete" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,filename,filepath,
+        isdelete
+    </sql>
+</mapper>

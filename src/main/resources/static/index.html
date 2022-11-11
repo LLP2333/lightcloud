@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui@2.15.10/lib/theme-chalk/index.css">
+    <!--    引入vue2-->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <!-- 引入element-ui组件库 -->
+    <script src="https://unpkg.com/element-ui@2.15.10/lib/index.js"></script>
+    <!-- 引入axios-->
+    <script src="https://unpkg.com/axios@1.1.3/dist/axios.min.js"></script>
+</head>
+
+<body>
+<div id="left">
+
+</div>
+<div id="app">
+    <p>LightCloud</p><br/>
+    <form @submit.prevent="PreventSubmit()" action="http://localhost:8080/user" method="post">
+        用户名:
+        <el-input name="username" v-model="loginFrom.username" placeholder="Username">{{loginFrom.username}}</el-input>
+        <br/>
+        密码:
+        <el-input name="password" type="password" v-model="loginFrom.password" placeholder="password">
+            {{loginFrom.password}}
+        </el-input>
+        <br/>
+        <br/>
+        <input @click="sendPost()" type="submit" value="登录"></input>
+    </form>
+</div>
+<div id="right">
+
+</div>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            loginFrom: {
+                username: "",
+                password: ""
+            }
+        },
+        methods: {
+            PreventSubmit: function () {
+
+                // 阻止默认表单提交
+
+                // 做你自己想做的事，比如ajax请求后台数据
+
+                return false;
+
+            },
+            sendPost: function () {
+                axios.post('/user',
+                    (this.loginFrom)
+                )
+                    .then(function (response) {
+                        console.log(response);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
+        }
+    })
+
+</script>
+
+</body>
+<style>
+    #left {
+        height: 276px;
+        width: 473px;
+        float: left;
+    }
+
+    #right {
+        height: 276px;
+        width: 473px;
+        float: right;
+    }
+
+    #app {
+        margin-top: 100px;
+        height: 276px;
+        width: auto;
+        float: left;
+    }
+
+    #app p {
+        text-align: center;
+    }
+
+    body {
+        /*background-image: url(/img/background.jpg);*/
+        background-size: cover;
+        background-color: #a6a9ad;
+    }
+</style>
+
+</html>

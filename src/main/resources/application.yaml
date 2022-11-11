@@ -1,0 +1,35 @@
+#数据库的配置
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/lightcloud?serverTimezone=UTC
+
+#DataSource配置（使用druid）
+    druid:
+      stat-view-servlet:
+        enabled: true
+        login-username: admin
+        login-password: admin
+        url-pattern: /druid/*
+        reset-enable: false
+      filter:
+        slf4j:
+          enabled: true
+        wall:
+          enabled: true
+          db-type: mysql
+        stat:
+          enabled: true
+          db-type: mysql
+          log-slow-sql: true
+          slow-sql-millis: 1000
+
+
+
+
+#mybatis-plus配置
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
