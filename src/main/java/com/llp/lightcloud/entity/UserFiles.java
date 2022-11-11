@@ -1,27 +1,29 @@
 package com.llp.lightcloud.entity;
 
-import com.baomidou.mybatisplus.annotation.*;
-
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
-
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 /**
  * 
- * @TableName filemessage
+ * @TableName user_files
  */
-@TableName(value ="filemessage")
+@TableName(value ="user_files")
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class Filemessage implements Serializable {
+public class UserFiles implements Serializable {
     /**
      * 自增id
      */
     @TableId
     private Long id;
+
+    /**
+     * 用户名
+     */
+    private String username;
 
     /**
      * 文件名（uuid）
@@ -36,7 +38,6 @@ public class Filemessage implements Serializable {
     /**
      * 0表示未删除，1表示软删除
      */
-   @TableLogic(value = "0",delval = "1")
     private Integer isdelete;
 
     @TableField(exist = false)

@@ -2,17 +2,18 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.llp.lightcloud.mapper.FilemessageMapper">
+<mapper namespace="com.llp.lightcloud.mapper.UserFilesMapper">
 
-    <resultMap id="BaseResultMap" type="com.llp.lightcloud.entity.Filemessage">
+    <resultMap id="BaseResultMap" type="com.llp.lightcloud.entity.UserFiles">
             <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="username" column="username" jdbcType="VARCHAR"/>
             <result property="filename" column="filename" jdbcType="VARCHAR"/>
             <result property="filepath" column="filepath" jdbcType="VARCHAR"/>
             <result property="isdelete" column="isdelete" jdbcType="INTEGER"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,filename,filepath,
-        isdelete
+        id,username,filename,
+        filepath,isdelete
     </sql>
 </mapper>
