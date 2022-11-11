@@ -25,7 +25,9 @@ spring:
           db-type: mysql
           log-slow-sql: true
           slow-sql-millis: 1000
-
+ #thymleaf模板
+  thymeleaf:
+    enabled: true
 
 
 

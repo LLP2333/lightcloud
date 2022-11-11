@@ -2,6 +2,7 @@ package com.llp.lightcloud.mapper;
 
 import com.llp.lightcloud.entity.Filemessage;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.springframework.stereotype.Repository;
 
 /**
 * @author NASK
@@ -9,6 +10,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @createDate 2022-11-11 09:15:31
 * @Entity com.llp.lightcloud.entity.Filemessage
 */
+@Repository
 public interface FilemessageMapper extends BaseMapper<Filemessage> {
 
 }
