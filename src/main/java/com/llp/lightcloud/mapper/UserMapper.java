@@ -15,7 +15,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserMapper extends BaseMapper<User> {
 
+    //通过用户名的密码获取user的完整信息
     User selectByUsernameAndPassword(@Param("username") String username, @Param("password") String password);
+    //通过用户名获取用户
+    User selectByUsername(@Param("username") String username);
 }
 
 

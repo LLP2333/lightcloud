@@ -12,4 +12,8 @@ public interface UserService extends IService<User> {
 
     //登录检测
     User  loginCheck(User user);
+    //检查是否有该用户
+    Boolean isNewUser(User user);
+    //添加新用户
+
 }

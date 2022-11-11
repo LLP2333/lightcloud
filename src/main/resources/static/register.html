@@ -43,8 +43,8 @@
                 username: "",
                 password: "",
                 email: "",
-                superuser: "",
-                isdelete: ""
+                superuser: "1",
+                isdelete: "0"
 
             }
         },
@@ -71,7 +71,7 @@
                             location.href = "/";
                         }
                         else
-                            alert("出错了");
+                            alert("出错了,该用户名可能已被注册");
 
                     })
                     .catch(function (error) {
@@ -99,7 +99,7 @@
     body {
         /*background-image: url(/img/background.jpg);*/
         background-size: cover;
-        background-color: #3e6ca9;
+        background-color: #a6a9ad;
     }
 </style>
 
