@@ -6,7 +6,7 @@
     <title>login</title>
     <!-- 引入element-ui样式 -->
     <link rel="stylesheet" href="https://unpkg.com/element-ui@2.15.10/lib/theme-chalk/index.css">
-     <!--    引入vue2-->
+    <!--    引入vue2-->
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
     <!-- 引入element-ui组件库 -->
     <script src="https://unpkg.com/element-ui@2.15.10/lib/index.js"></script>
@@ -15,30 +15,57 @@
 </head>
 
 <body>
-<el-row>
-    <el-col :span="24">
-        <div class="grid-content bg-purple-dark">
-            <p>文件管理</p>
-            <div id="app">
-                <el-upload
-                        name="files"
-                        class="upload-demo"
-                        drag
-                        action="/upload"
-                        multiple>
-                    <i class="el-icon-upload"></i>
-                    <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
-                    <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
-                </el-upload>
+<div>
+    <el-row>
+        <el-col :span="24">
+            <div class="grid-content bg-purple-dark">
+                <p>文件管理</p>
+                <div id="app">
+                    <el-upload
+                            name="files"
+                            class="upload-demo"
+                            drag
+                            action="/upload"
+                            multiple>
+                        <i class="el-icon-upload"></i>
+                        <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+                        <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
+                    </el-upload>
+                </div>
             </div>
-        </div>
-    </el-col>
-</el-row>
+        </el-col>
+    </el-row>
+</div>
+<div id="test">
+    <el-button @click="loginOut">退出</el-button>
+    {{name}}
+</div>
+
 
 </body>
 <script>
-    var app=new Vue({
-        el:"#app",
+    var app = new Vue({
+        el: "#app",
+    });
+    var button = new Vue({
+        el: "#test",
+        data:
+            {
+                name: ""
+            },
+        methods: {
+            loginOut: function () {
+                axios.get(
+                    "/loginOut"
+                )
+                    .then((resp)=>
+                    {
+                        console.log(resp);
+                        if (resp.data=="succeed")
+                        location.href="/";
+                    })
+            }
+        }
     })
 </script>
 <style>
