@@ -2,7 +2,6 @@ package com.llp.lightcloud.config;
 
 import com.llp.lightcloud.interceptor.LoginInterceptor;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -18,6 +17,6 @@ public class LoginInterceptorConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         LoginInterceptor loginInterceptor = new LoginInterceptor();
         registry.addInterceptor(loginInterceptor)
-                .addPathPatterns("/home");
+                .addPathPatterns(Arrays.asList("/home","/fileList","/download"));
     }
 }

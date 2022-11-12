@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <!-- 引入element-ui样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui@2.15.10/lib/theme-chalk/index.css">
+    <!--    引入vue2-->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <!-- 引入element-ui组件库 -->
+    <script src="https://unpkg.com/element-ui@2.15.10/lib/index.js"></script>
+    <!-- 引入axios-->
+    <script src="https://unpkg.com/axios@1.1.3/dist/axios.min.js"></script>
+</head>
+<body>
+<div><p>文件列表</p></div>
+<div id="list">
+    <table border="1" :data="userFileList">
+        <tr>
+            <th>序号</th>
+            <th>文件名</th>
+            <th>选择</th>
+        </tr>
+        <tr v-for="(userFile,index) in userFileList" :key="index">
+            <td>{{index+1}}</td>
+            <td>{{userFile.filepath}}</td>
+            <td>
+                <el-button size="mini" @click="getDownload(userFile.id)">下载</el-button>
+                <el-button size="mini" type="danger">删除</el-button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+</body>
+<script type="text/javascript">
+    const app = new Vue({
+        el: "#list",
+        data: {
+            userFile: {
+                id: "id",
+                username: "",
+                filename: "",
+                filepath: "",
+                isdelete: ""
+            },
+            userFileList: ''
+        },
+        mounted() {
+            this.getUserFileList();
+        },
+        methods: {
+            getUserFileList: function () {
+                axios.post(
+                    "/fileList"
+                )
+                    .then((resp) => {
+                        this.userFileList = resp.data
+                    })
+            },
+            getDownload:function (id)
+            {
+                window.open("/download/"+id,'_blank');
+                // location.href="/download";
+                // axios.post(
+                //     "/download",
+                //     (id)
+                // )
+                //     .then((resp)=>
+                //     {
+                //         console.log(resp.data)
+                //     })
+            }
+        }
+    })
+</script>
+<style>
+
+</style>
+
+</html>

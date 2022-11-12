@@ -1,5 +1,6 @@
 package com.llp.lightcloud.dao;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.llp.lightcloud.entity.User;
 import com.llp.lightcloud.entity.UserFiles;
 import com.llp.lightcloud.mapper.UserFilesMapper;
@@ -55,4 +56,10 @@ public class UserFilesDao {
 
     }
 
+    public List<UserFiles> getUserFileList(String username) {
+        QueryWrapper<UserFiles> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("username",username);
+        List<UserFiles> userFilesList = userFilesMapper.selectList(queryWrapper);
+        return userFilesList;
+    }
 }

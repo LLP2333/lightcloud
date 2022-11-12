@@ -35,3 +35,7 @@ spring:
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+#上传的文件的文件路径
+myfile:
+  filepath: 'D:\\A\\upload'
