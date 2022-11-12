@@ -89,6 +89,7 @@ public class UserFilesServiceImpl extends ServiceImpl<UserFilesMapper, UserFiles
           InputStream  is = new FileInputStream(new File(finalPath));
             bytes=new byte[is.available()];
             is.read(bytes);
+            is.close();
         } catch (FileNotFoundException e) {
             log.info("文件未找到异常");
             throw new RuntimeException(e);

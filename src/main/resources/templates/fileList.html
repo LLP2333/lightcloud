@@ -14,7 +14,9 @@
     <script src="https://unpkg.com/axios@1.1.3/dist/axios.min.js"></script>
 </head>
 <body>
-<div><p>文件列表</p></div>
+<div>
+    <p>文件列表</p>
+</div>
 <div id="list">
     <table border="1" :data="userFileList">
         <tr>
@@ -30,7 +32,8 @@
                 <el-button size="mini" type="danger">删除</el-button>
             </td>
         </tr>
-    </table>
+    </table><br/>
+    <a href="/home">回到首页</a>
 </div>
 
 </body>
