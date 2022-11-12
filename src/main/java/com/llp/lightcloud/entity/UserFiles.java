@@ -17,7 +17,7 @@ public class UserFiles implements Serializable {
     /**
      * 自增id
      */
-    @TableId
+    @TableId(type = IdType.AUTO)
     private Long id;
 
     /**

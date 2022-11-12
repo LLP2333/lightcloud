@@ -1,7 +1,11 @@
 package com.llp.lightcloud.service;
 
+import com.llp.lightcloud.entity.User;
 import com.llp.lightcloud.entity.UserFiles;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 /**
 * @author NASK
@@ -9,5 +13,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2022-11-11 21:22:24
 */
 public interface UserFilesService extends IService<UserFiles> {
-
+        //上传文件服务
+        boolean uploadFiles(MultipartFile[] files, User user) throws IOException;
 }
