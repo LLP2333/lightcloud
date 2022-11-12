@@ -1,5 +1,6 @@
 package com.llp.lightcloud.controller;
 
+import com.llp.lightcloud.entity.User;
 import com.llp.lightcloud.entity.UserFiles;
 import com.llp.lightcloud.service.UserFilesService;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
@@ -30,9 +34,21 @@ public class DownLoadController {
 
     @ResponseBody
     @RequestMapping("/download/{id}")
-    public ResponseEntity<byte[]> downloadFile(@PathVariable String id) throws IOException {
-       //获取文件真实的名字
+    public ResponseEntity<byte[]> downloadFile(@PathVariable String id,
+                                               HttpServletRequest request,
+                                               HttpServletResponse response) throws IOException {
+        //校验该用户是否有文件访问权限
+        HttpSession session = request.getSession();
+        User user = (User)session.getAttribute("user");
+        String username = user.getUsername();
         UserFiles userFiles = userFilesService.getById(id);
+        if(!username.equals(userFiles.getUsername()))
+        {
+            log.info("访问非法");
+            response.sendRedirect("/home");
+        }
+
+        //获取文件真实的名字
         String filepath = userFiles.getFilepath();
 
         //解决文件名中文变成下划线的问题
