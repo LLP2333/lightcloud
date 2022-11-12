@@ -18,6 +18,6 @@ public interface UserFilesService extends IService<UserFiles> {
     boolean uploadFiles(MultipartFile[] files, User user) throws IOException;
     //获取用户的文件列表
     List<UserFiles> getUserFileList(User user);
-
+   //通过文件的id下载文件
     byte[] getDownloadFile(String id) throws IOException;
 }

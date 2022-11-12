@@ -31,17 +31,25 @@ public class DownLoadController {
     @ResponseBody
     @RequestMapping("/download/{id}")
     public ResponseEntity<byte[]> downloadFile(@PathVariable String id) throws IOException {
-
+       //获取文件真实的名字
         UserFiles userFiles = userFilesService.getById(id);
         String filepath = userFiles.getFilepath();
+
+        //解决文件名中文变成下划线的问题
         filepath=new String(filepath.getBytes(StandardCharsets.UTF_8),"ISO8859-1");
         String s="attachment;filename="+filepath;
-        byte[] bytes = userFilesService.getDownloadFile(id);
-        MultiValueMap<String,String> headers=new HttpHeaders();
         log.info("s={}",s);
+
+        //文件数据保存到byte数组
+        byte[] bytes = userFilesService.getDownloadFile(id);
+
+        //设置HttpHeaders
+        MultiValueMap<String,String> headers=new HttpHeaders();
         headers.add("Content-Disposition",s);
         headers.add("Content-Type", "application/octet-stream");
         HttpStatus httpStatus=HttpStatus.OK;
+
+        //设置要返回的数据
         ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(bytes,headers,httpStatus);
         return responseEntity;
     }
