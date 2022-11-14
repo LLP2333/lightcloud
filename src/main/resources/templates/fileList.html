@@ -29,7 +29,7 @@
             <td>{{userFile.filepath}}</td>
             <td>
                 <el-button size="mini" @click="getDownload(userFile.id)">下载</el-button>
-                <el-button size="mini" type="danger">删除</el-button>
+                <el-button size="mini" type="danger" @click="deleteByFileId(userFile.id)">删除</el-button>
             </td>
         </tr>
     </table><br/>
@@ -65,15 +65,23 @@
             getDownload:function (id)
             {
                 window.open("/download/"+id,'_blank');
-                // location.href="/download";
-                // axios.post(
-                //     "/download",
-                //     (id)
-                // )
-                //     .then((resp)=>
-                //     {
-                //         console.log(resp.data)
-                //     })
+            },
+            deleteByFileId:function (id)
+            {
+                axios.get(
+                    "/delete/"+id
+                )
+                    .then((resp)=>
+                    {
+                        if(resp.data=="succeed")
+                        {
+                            this.getUserFileList();
+                        }
+                        else
+                        {
+                            console.log("删除失败");
+                        }
+                    })
             }
         }
     })
