@@ -1,9 +1,7 @@
 package com.llp.lightcloud.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
+
 import java.io.Serializable;
 import lombok.Data;
 
@@ -38,6 +36,7 @@ public class UserFiles implements Serializable {
     /**
      * 0表示未删除，1表示软删除
      */
+    @TableLogic(value = "0",delval = "1")
     private Integer isdelete;
 
     @TableField(exist = false)
