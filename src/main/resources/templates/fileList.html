@@ -28,8 +28,10 @@
             <td>{{index+1}}</td>
             <td>{{userFile.filepath}}</td>
             <td>
-                <el-button size="mini" @click="getDownload(userFile.id)">下载</el-button>
+                <el-button size="mini" type="primary" @click="getDownload(userFile.id)">下载</el-button>
+                <el-button size="mini" type="primary" >分享该文件</el-button>
                 <el-button size="mini" type="danger" @click="deleteByFileId(userFile.id)">删除</el-button>
+
             </td>
         </tr>
     </table><br/>
